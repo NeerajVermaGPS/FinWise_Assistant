@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FinWise: Your Personal Financial Assistant</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="bg"></div>
+<div class="content">
+    <header class="main-header">
+        <img src="https://neerajvermagps.000webhostapp.com/images/logo.png" alt="Logo" />
+    </header>
+</div>
+<script>
+    window.watsonAssistantChatOptions = {
+      integrationID: "{Integration ID}",
+      region: "{Region}",
+      serviceInstanceID: "{Service Instance ID}",
+      onLoad: async (instance) => { await instance.render(); }
+    };
+    setTimeout(function(){
+      const t=document.createElement('script');
+      t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
+      document.head.appendChild(t);
+    });
+  </script>
+</body>
+</html>
