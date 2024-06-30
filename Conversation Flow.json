@@ -1,0 +1,3703 @@
+{
+  "name": "FinWise Assistant",
+  "type": "action",
+  "counts": {
+    "actions": 11,
+    "intents": 8,
+    "entities": 9,
+    "data_types": 0,
+    "collections": 0,
+    "global_variables": 0
+  },
+  "status": "Available",
+  "language": "en",
+  "skill_id": "1fac98fa-6260-43ff-a0df-623d7705a987",
+  "workspace": {
+    "actions": [
+      {
+        "type": "standard",
+        "steps": [
+          {
+            "step": "step_262",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "I'm heading out for now. Keep up the great financial habits, and I'll be back with more investment insights soon!"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "I'm off to crunch some numbers! Don't forget, every penny counts. Chat soon for more financial strategies!"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Time to take a break! Keep those expenses in check, and I'll catch you later for more money-savvy tips."
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Signing off for now! Remember, saving today brings smiles tomorrow. Until next time, keep those budgets balanced!"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "It's been a pleasure assisting you! Stay on top of those budgets, and I'll see you next time for more financial success."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "random"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_262"
+          }
+        ],
+        "title": "Specific Bye",
+        "action": "action_33145",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "action_33145_intent_48717"
+        },
+        "variables": [
+          {
+            "title": "I'm heading out for now. Keep up the great financial habits, and",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_262",
+            "data_type": "any"
+          }
+        ],
+        "launch_mode": "learning",
+        "next_action": "action_33859",
+        "topic_switch": {
+          "allowed_from": true,
+          "allowed_into": true,
+          "never_return": false
+        },
+        "disambiguation_opt_out": false
+      },
+      {
+        "type": "standard",
+        "steps": [
+          {
+            "step": "step_669",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "It's been great chatting! Until next time, stay safe and happy!"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "I'm off! Wishing you a wonderful time ahead!"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Time for me to go. Have a fantastic day ahead!"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Signing off for now! Take care and stay awesome!"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "I'll catch you later! Remember, you've got this!"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "random"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_669"
+          }
+        ],
+        "title": "Normal Bye",
+        "action": "action_33859",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "action_33859_intent_6527"
+        },
+        "variables": [
+          {
+            "title": "It's been great chatting! Until next time, stay safe and happy!",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_669",
+            "data_type": "any"
+          }
+        ],
+        "launch_mode": "learning",
+        "next_action": "action_49957",
+        "topic_switch": {
+          "allowed_from": true,
+          "allowed_into": true,
+          "never_return": false
+        },
+        "disambiguation_opt_out": false
+      },
+      {
+        "type": "standard",
+        "steps": [
+          {
+            "step": "danger_word_detected",
+            "title": "Connect to agent",
+            "handlers": [],
+            "resolver": {
+              "type": "fallback"
+            },
+            "variable": "danger_word_detected_variable",
+            "condition": {
+              "entity": "danger_words"
+            },
+            "next_step": "profanity_detected"
+          },
+          {
+            "step": "profanity_detected",
+            "title": "Show warning",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Please use appropriate language when interacting with the assistant."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "max_hits",
+                "handler": "max_hits_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "max_hits": 2,
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "profanity_detected_variable",
+            "condition": {
+              "entity": "profane_words"
+            }
+          }
+        ],
+        "title": "Trigger word detected",
+        "action": "run_always",
+        "boosts": [],
+        "handlers": [],
+        "variables": [
+          {
+            "title": "Profanity detected",
+            "variable": "danger_word_detected_variable",
+            "data_type": "any"
+          },
+          {
+            "title": "Profane word detected",
+            "variable": "profanity_detected_variable",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "anything_else"
+      },
+      {
+        "type": "standard",
+        "steps": [
+          {
+            "step": "step_001",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": "I'm afraid I don't understand. Please rephrase your question."
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_001",
+            "condition": {
+              "lte": [
+                {
+                  "system_variable": "no_action_matches_count"
+                },
+                {
+                  "scalar": 3
+                }
+              ]
+            },
+            "next_step": "step_002"
+          },
+          {
+            "step": "step_002",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": ""
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "invoke_another_action_and_end",
+              "invoke_action": {
+                "action": "fallback",
+                "policy": "default",
+                "parameters": null,
+                "result_variable": "step_002_result_1"
+              }
+            },
+            "variable": "step_002",
+            "condition": {
+              "gt": [
+                {
+                  "system_variable": "no_action_matches_count"
+                },
+                {
+                  "scalar": 3
+                }
+              ]
+            }
+          }
+        ],
+        "title": "No matches",
+        "action": "anything_else",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "expression": "anything_else"
+        },
+        "variables": [
+          {
+            "title": "I am afraid I do not understand what you are asking, please re-p",
+            "variable": "step_001",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_002",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_002_result_1",
+            "data_type": "any"
+          }
+        ],
+        "disambiguation_opt_out": true
+      },
+      {
+        "type": "standard",
+        "steps": [
+          {
+            "step": "step_001",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Hii, I'm **FinWise Assistant**: Your smart companion for mastering finances. From budgeting tips to tracking expenses and investment advice, it's your go-to for financial wisdom and management.\n\n<br />\n\n\n\nSelect one of these options and start your conversation:"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential",
+                  "repeat_on_reprompt": false
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Budget Planning Actions",
+                      "value": {
+                        "input": {
+                          "text": "Budget Planning Actions"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Investment Advice Actions",
+                      "value": {
+                        "input": {
+                          "text": "Investment Advice Actions"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Income Management Actions",
+                      "value": {
+                        "input": {
+                          "text": "Income Management Actions"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Debt Management Actions",
+                      "value": {
+                        "input": {
+                          "text": "Debt Management Actions"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Exit",
+                      "value": {
+                        "input": {
+                          "text": "Exit"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text_expression": {
+                            "concat": [
+                              {
+                                "scalar": "I didn't catch that. Select a valid option:"
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "response_type": "text",
+                      "selection_policy": "incremental"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "entity_9855",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_001",
+            "next_step": "step_307"
+          },
+          {
+            "step": "step_307",
+            "handlers": [],
+            "resolver": {
+              "type": "invoke_another_action_and_end",
+              "invoke_action": {
+                "action": "action_44732",
+                "policy": "default",
+                "parameters": null,
+                "result_variable": "step_307_result_1"
+              }
+            },
+            "variable": "step_307",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_001"
+                },
+                {
+                  "value": "Budget Planning Actions",
+                  "from_entity": "entity_9855"
+                }
+              ]
+            },
+            "next_step": "step_623"
+          },
+          {
+            "step": "step_623",
+            "handlers": [],
+            "resolver": {
+              "type": "invoke_another_action_and_end",
+              "invoke_action": {
+                "action": "action_32358",
+                "policy": "default",
+                "parameters": null,
+                "result_variable": "step_623_result_1"
+              }
+            },
+            "variable": "step_623",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_001"
+                },
+                {
+                  "value": "Investment Advice Actions",
+                  "from_entity": "entity_9855"
+                }
+              ]
+            },
+            "next_step": "step_340"
+          },
+          {
+            "step": "step_340",
+            "handlers": [],
+            "resolver": {
+              "type": "invoke_another_action_and_end",
+              "invoke_action": {
+                "action": "action_9865",
+                "policy": "default",
+                "parameters": null,
+                "result_variable": "step_340_result_1"
+              }
+            },
+            "variable": "step_340",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_001"
+                },
+                {
+                  "value": "Income Management Actions",
+                  "from_entity": "entity_9855"
+                }
+              ]
+            },
+            "next_step": "step_210"
+          },
+          {
+            "step": "step_210",
+            "handlers": [],
+            "resolver": {
+              "type": "invoke_another_action_and_end",
+              "invoke_action": {
+                "action": "action_49957",
+                "policy": "default",
+                "parameters": null,
+                "result_variable": "step_210_result_1"
+              }
+            },
+            "variable": "step_210",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_001"
+                },
+                {
+                  "value": "Debt Management Actions",
+                  "from_entity": "entity_9855"
+                }
+              ]
+            },
+            "next_step": "step_887"
+          },
+          {
+            "step": "step_887",
+            "handlers": [],
+            "resolver": {
+              "type": "invoke_another_action_and_end",
+              "invoke_action": {
+                "action": "action_33859",
+                "policy": "default",
+                "parameters": null,
+                "result_variable": "step_887_result_1"
+              }
+            },
+            "variable": "step_887",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_001"
+                },
+                {
+                  "value": "Exit",
+                  "from_entity": "entity_9855"
+                }
+              ]
+            }
+          }
+        ],
+        "title": "Greet customer",
+        "action": "welcome",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "expression": "welcome"
+        },
+        "variables": [
+          {
+            "title": "Hii, I'm **FinWise Assistant**: Your smart companion for masteri",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_001",
+            "data_type": "any"
+          },
+          {
+            "title": "No response",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_210",
+            "data_type": "any"
+          },
+          {
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_210_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "No response",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_307",
+            "data_type": "any"
+          },
+          {
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_307_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "No response",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_340",
+            "data_type": "any"
+          },
+          {
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_340_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "No response",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_623",
+            "data_type": "any"
+          },
+          {
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_623_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "No response",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_887",
+            "data_type": "any"
+          },
+          {
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_887_result_1",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "action_49790",
+        "disambiguation_opt_out": true
+      },
+      {
+        "type": "standard",
+        "steps": [
+          {
+            "step": "step_200",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "1. Track your expenses: Keep a record of all your spending to understand where your money goes.\n  2. Set a budget: Allocate your income into categories such as needs, wants, and savings.\n  3. Prioritize savings: Aim to save at least 20% of your income each month.\n  4. Reduce unnecessary expenses: Identify and cut back on non-essential spending.\n  5."
+                          },
+                          {
+                            "scalar": " Use budgeting tools: Utilize apps or spreadsheets to help you stay on track."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_200",
+            "next_step": "step_184"
+          },
+          {
+            "step": "step_184",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "These are some common steps you should keep in mind while managing your budget.\n\nLet me know if you need something else?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential",
+                  "repeat_on_reprompt": false
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Yes",
+                      "value": {
+                        "input": {
+                          "text": "Yes"
+                        }
+                      }
+                    },
+                    {
+                      "label": "No",
+                      "value": {
+                        "input": {
+                          "text": "No"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text_expression": {
+                            "concat": [
+                              {
+                                "scalar": "I'm sorry, I did not catch that, please restate your response."
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "response_type": "text",
+                      "selection_policy": "incremental"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "sys-yes-no",
+              "max_tries": 3,
+              "response_collection_behavior": "always_ask"
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_184",
+            "next_step": "step_846"
+          },
+          {
+            "step": "step_846",
+            "handlers": [],
+            "resolver": {
+              "type": "invoke_another_action",
+              "invoke_action": {
+                "action": "action_49790",
+                "policy": "default",
+                "parameters": null,
+                "result_variable": "step_846_result_1"
+              }
+            },
+            "variable": "step_846",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_184"
+                },
+                {
+                  "scalar": "yes"
+                }
+              ]
+            },
+            "next_step": "step_294"
+          },
+          {
+            "step": "step_294",
+            "handlers": [],
+            "resolver": {
+              "type": "invoke_another_action",
+              "invoke_action": {
+                "action": "action_33145",
+                "policy": "default",
+                "parameters": null,
+                "result_variable": "step_294_result_1"
+              }
+            },
+            "variable": "step_294",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_184"
+                },
+                {
+                  "scalar": "no"
+                }
+              ]
+            }
+          }
+        ],
+        "title": "Budget Planning Actions",
+        "action": "action_44732",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "action_44732_intent_32541"
+        },
+        "variables": [
+          {
+            "title": "These are some common steps you should keep in mind while managi",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_184",
+            "data_type": "yes_no"
+          },
+          {
+            "title": "1. Track your expenses: Keep a record of all your spending to un",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_200",
+            "data_type": "any"
+          },
+          {
+            "title": "No response",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_294",
+            "data_type": "any"
+          },
+          {
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_294_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "No response",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_846",
+            "data_type": "any"
+          },
+          {
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_846_result_1",
+            "data_type": "any"
+          }
+        ],
+        "launch_mode": "learning",
+        "next_action": "fallback",
+        "topic_switch": {
+          "allowed_from": true,
+          "allowed_into": true,
+          "never_return": false
+        },
+        "disambiguation_opt_out": false
+      },
+      {
+        "type": "standard",
+        "steps": [
+          {
+            "step": "step_731",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Select your questions or ask it in chat:"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential",
+                  "repeat_on_reprompt": false
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Help me create a plan to repay my student loans.",
+                      "value": {
+                        "input": {
+                          "text": "Help me create a plan to repay my student loans."
+                        }
+                      }
+                    },
+                    {
+                      "label": "What's the best way to pay off my credit card debt?",
+                      "value": {
+                        "input": {
+                          "text": "What's the best way to pay off my credit card debt?"
+                        }
+                      }
+                    },
+                    {
+                      "label": "What's the debt snowball method?",
+                      "value": {
+                        "input": {
+                          "text": "What's the debt snowball method?"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Explain the debt avalanche method to me.",
+                      "value": {
+                        "input": {
+                          "text": "Explain the debt avalanche method to me."
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text_expression": {
+                            "concat": [
+                              {
+                                "scalar": "I didn't catch that. Select a valid option:"
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "response_type": "text",
+                      "selection_policy": "incremental"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "entity_19557",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_731",
+            "next_step": "step_531"
+          },
+          {
+            "step": "step_531",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Creating a student loan repayment plan involves several steps to ensure you can manage and pay off your debt efficiently. Here’s a step-by-step guide:\n\n\n  1. **List Your Loans:** Write down all your student loans, including the balances, interest rates, and monthly payments.\n  2. **Understand Repayment Options:** Explore different repayment plans such as Standard, Graduated, Extended, Income-"
+                          },
+                          {
+                            "scalar": "Driven Repayment (IDR), and Public Service Loan Forgiveness (PSLF).\n  3. **Choose a Plan:** Select the repayment plan that best fits your financial situation and goals. For example, IDR plans can lower your monthly payments based on your income.\n  4. **Consider Extra Payments:** If possible,"
+                          },
+                          {
+                            "scalar": " make extra payments towards your loan principal to reduce the overall interest you pay and shorten the repayment period.\n  5. **Set Up Auto-Pay:** Enroll in automatic payments to ensure you never miss a payment, often leading to an interest rate reduction.\n  6. **Seek Loan Forgiveness Programs:** If you qualify for loan forgiveness programs like PSLF or Teacher Loan Forgiveness,"
+                          },
+                          {
+                            "scalar": " ensure you meet all the requirements.\n  7. **Refinance or Consolidate:** If you have high-interest loans, consider refinancing to a lower rate or consolidating multiple loans into one to simplify payments.\n  8. **Review and Adjust Regularly:** Periodically review your financial situation and loan repayment plan to make adjustments as needed."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_531",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_731"
+                },
+                {
+                  "value": "Help me create a plan to repay my student loans.",
+                  "from_entity": "entity_19557"
+                }
+              ]
+            },
+            "next_step": "step_713"
+          },
+          {
+            "step": "step_713",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "The best way to pay off credit card debt depends on your financial situation, but here are some effective strategies:\n\n\n  1. **Debt Avalanche Method:** Pay off cards with the highest interest rates first to save on interest.\n  2. **Debt Snowball Method:** Pay off cards with the smallest balances first to gain motivation.\n  3. **Balance Transfer:** Transfer your high-"
+                          },
+                          {
+                            "scalar": "interest credit card debt to a card with a lower interest rate or a 0% introductory rate, if you qualify.\n  4. **Consolidation Loan:** Take out a personal loan with a lower interest rate to pay off your credit card balances, consolidating them into one monthly payment.\n  5. **Increase Payments:** Allocate any extra income or windfalls directly towards your credit card debt to pay it off faster."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_713",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_731"
+                },
+                {
+                  "value": "What's the best way to pay off my credit card debt?",
+                  "from_entity": "entity_19557"
+                }
+              ]
+            },
+            "next_step": "step_672"
+          },
+          {
+            "step": "step_672",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "The debt snowball method is a strategy to pay off debt by focusing on the smallest balances first, regardless of the interest rates. Here’s how it works:\n\n\n  1. **List All Debts:** Write down all your debts, including the balances, minimum monthly payments, and interest rates.\n  2. **Order by Balance:** Arrange your debts in ascending order based on their balances,"
+                          },
+                          {
+                            "scalar": " with the smallest balance at the top.\n  3. **Make Minimum Payments:** Continue making the minimum payments on all your debts.\n  4. **Allocate Extra Payments:** Direct any extra money you have towards the debt with the smallest balance.\n  5. **Repeat:** Once the smallest debt is paid off, move to the next smallest, and repeat the process until all debts are paid off."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_672",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_731"
+                },
+                {
+                  "value": "What's the debt snowball method?",
+                  "from_entity": "entity_19557"
+                }
+              ]
+            },
+            "next_step": "step_693"
+          },
+          {
+            "step": "step_693",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "The debt avalanche method is a strategy to pay off debt by prioritizing the repayment of debts with the highest interest rates first. Here’s how it works:\n\n\n  1. **List All Debts:** Write down all your debts, including the balances, minimum monthly payments, and interest rates.\n  2. **Order by Interest Rate:** Arrange your debts in descending order based on their interest rates,"
+                          },
+                          {
+                            "scalar": " with the highest rate at the top.\n  3. **Make Minimum Payments:** Continue making the minimum payments on all your debts.\n  4. **Allocate Extra Payments:** Direct any extra money you have towards the debt with the highest interest rate.\n  5. **Repeat:** Once the highest-interest debt is paid off, move to the next highest, and repeat the process until all debts are paid off."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_693",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_731"
+                },
+                {
+                  "value": "Explain the debt avalanche method to me.",
+                  "from_entity": "entity_19557"
+                }
+              ]
+            },
+            "next_step": "step_554"
+          },
+          {
+            "step": "step_554",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Let me know if you need further assistance?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential",
+                  "repeat_on_reprompt": false
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Yes",
+                      "value": {
+                        "input": {
+                          "text": "Yes"
+                        }
+                      }
+                    },
+                    {
+                      "label": "No",
+                      "value": {
+                        "input": {
+                          "text": "No"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text_expression": {
+                            "concat": [
+                              {
+                                "scalar": "I'm sorry, I did not catch that, please restate your response."
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "response_type": "text",
+                      "selection_policy": "incremental"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "sys-yes-no",
+              "max_tries": 3,
+              "response_collection_behavior": "always_ask"
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_554",
+            "next_step": "step_515"
+          },
+          {
+            "step": "step_515",
+            "handlers": [],
+            "resolver": {
+              "type": "invoke_another_action_and_end",
+              "invoke_action": {
+                "action": "action_49790",
+                "policy": "default",
+                "parameters": null,
+                "result_variable": "step_515_result_1"
+              }
+            },
+            "variable": "step_515",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_554"
+                },
+                {
+                  "scalar": "yes"
+                }
+              ]
+            },
+            "next_step": "step_297"
+          },
+          {
+            "step": "step_297",
+            "handlers": [],
+            "resolver": {
+              "type": "invoke_another_action_and_end",
+              "invoke_action": {
+                "action": "action_33145",
+                "policy": "default",
+                "parameters": null,
+                "result_variable": "step_297_result_1"
+              }
+            },
+            "variable": "step_297",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_554"
+                },
+                {
+                  "scalar": "no"
+                }
+              ]
+            }
+          }
+        ],
+        "title": "Debt Management Actions",
+        "action": "action_49957",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "action_49957_intent_21848"
+        },
+        "variables": [
+          {
+            "title": "No response",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_297",
+            "data_type": "any"
+          },
+          {
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_297_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "No response",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_515",
+            "data_type": "any"
+          },
+          {
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_515_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "Creating a student loan repayment plan involves several steps to",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_531",
+            "data_type": "any"
+          },
+          {
+            "title": "Let me know if you need further assistance?",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_554",
+            "data_type": "yes_no"
+          },
+          {
+            "title": "The debt snowball method is a strategy to pay off debt by focusi",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_672",
+            "data_type": "any"
+          },
+          {
+            "title": "The debt avalanche method is a strategy to pay off debt by prior",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_693",
+            "data_type": "any"
+          },
+          {
+            "title": "The best way to pay off credit card debt depends on your financi",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_713",
+            "data_type": "any"
+          },
+          {
+            "title": "Select your questions or ask it in chat:",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_731",
+            "data_type": "any"
+          }
+        ],
+        "launch_mode": "learning",
+        "next_action": "action_9865",
+        "topic_switch": {
+          "allowed_from": true,
+          "allowed_into": true,
+          "never_return": false
+        },
+        "disambiguation_opt_out": false
+      },
+      {
+        "type": "standard",
+        "steps": [
+          {
+            "step": "digression_failure",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Sorry I couldn't confirm if you wanted to return to previous topic, let me help you to connect with our agent."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "connect_to_agent",
+              "response": {
+                "transfer_info": {
+                  "target": {}
+                },
+                "agent_available": {
+                  "message": "Let's send you to an available agent."
+                },
+                "agent_unavailable": {
+                  "message": "There are no agents available at this time. When one becomes available, we'll connect you."
+                },
+                "message_to_human_agent": ""
+              }
+            },
+            "variable": "digression_failure",
+            "condition": {
+              "eq": [
+                {
+                  "system_variable": "fallback_reason"
+                },
+                {
+                  "scalar": "Failed to confirm topic return"
+                }
+              ]
+            },
+            "next_step": "step_001"
+          },
+          {
+            "step": "step_001",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": "I'm afraid I don't understand. I can connect you to an agent."
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "connect_to_agent",
+              "response": {
+                "transfer_info": {
+                  "target": {}
+                },
+                "agent_available": {
+                  "message": "Let's send you to an available agent."
+                },
+                "agent_unavailable": {
+                  "message": "There are no agents available at this time. When one becomes available, we'll connect you."
+                },
+                "message_to_human_agent": ""
+              }
+            },
+            "variable": "step_001",
+            "condition": {
+              "eq": [
+                {
+                  "system_variable": "fallback_reason"
+                },
+                {
+                  "scalar": "Step validation failed"
+                }
+              ]
+            },
+            "next_step": "step_002"
+          },
+          {
+            "step": "step_002",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": "Sorry I couldn't assist you. I will connect you to an agent right away."
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "connect_to_agent",
+              "response": {
+                "transfer_info": {
+                  "target": {}
+                },
+                "agent_available": {
+                  "message": "Let's send you to an available agent."
+                },
+                "agent_unavailable": {
+                  "message": "There are no agents available at this time. When one becomes available, we'll connect you."
+                },
+                "message_to_human_agent": ""
+              }
+            },
+            "variable": "step_002",
+            "condition": {
+              "eq": [
+                {
+                  "system_variable": "fallback_reason"
+                },
+                {
+                  "scalar": "Agent requested"
+                }
+              ]
+            },
+            "next_step": "step_003"
+          },
+          {
+            "step": "step_003",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": "I am afraid I do not understand what you are asking, let me connect you to an agent."
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "connect_to_agent",
+              "response": {
+                "transfer_info": {
+                  "target": {}
+                },
+                "agent_available": {
+                  "message": "Let's send you to an available agent."
+                },
+                "agent_unavailable": {
+                  "message": "There are no agents available at this time. When one becomes available, we'll connect you."
+                },
+                "message_to_human_agent": ""
+              }
+            },
+            "variable": "step_003",
+            "condition": {
+              "eq": [
+                {
+                  "system_variable": "fallback_reason"
+                },
+                {
+                  "scalar": "No action matches"
+                }
+              ]
+            },
+            "next_step": "step_004"
+          },
+          {
+            "step": "step_004",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": "It seems this conversation would be best managed by a human agent. Let me connect you to one of our agents."
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "connect_to_agent",
+              "response": {
+                "transfer_info": {
+                  "target": {}
+                },
+                "agent_available": {
+                  "message": "Let's send you to an available agent."
+                },
+                "agent_unavailable": {
+                  "message": "There are no agents available at this time. When one becomes available, we'll connect you."
+                },
+                "message_to_human_agent": ""
+              }
+            },
+            "variable": "step_004",
+            "condition": {
+              "eq": [
+                {
+                  "system_variable": "fallback_reason"
+                },
+                {
+                  "scalar": "Danger word detected"
+                }
+              ]
+            },
+            "next_step": "step_005"
+          },
+          {
+            "step": "step_005",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": "It seems this conversation would be best managed by a human agent. Let me connect you to one of our agents."
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "connect_to_agent",
+              "response": {
+                "transfer_info": {
+                  "target": {}
+                },
+                "agent_available": {
+                  "message": "Let's send you to an available agent."
+                },
+                "agent_unavailable": {
+                  "message": "There are no agents available at this time. When one becomes available, we'll connect you."
+                },
+                "message_to_human_agent": ""
+              }
+            },
+            "variable": "step_005",
+            "condition": {
+              "eq": [
+                {
+                  "system_variable": "fallback_reason"
+                },
+                {
+                  "scalar": "Profanity detected"
+                }
+              ]
+            }
+          }
+        ],
+        "title": "Fallback",
+        "action": "fallback",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "fallback_connect_to_agent"
+        },
+        "variables": [
+          {
+            "title": "Sorry I couldn't confirm if you wanted to return to previous top",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "digression_failure",
+            "data_type": "any"
+          },
+          {
+            "title": "I'm afraid I don't understand. I can connect you to an agent.",
+            "variable": "step_001",
+            "data_type": "any"
+          },
+          {
+            "title": "Sorry I couldn't assist you. I will connect you to an agent righ",
+            "variable": "step_002",
+            "data_type": "any"
+          },
+          {
+            "title": "I am afraid I do not understand what you are asking, let me conn",
+            "variable": "step_003",
+            "data_type": "any"
+          },
+          {
+            "title": "It seems this conversation would be best managed",
+            "variable": "step_004",
+            "data_type": "any"
+          },
+          {
+            "title": "Profanity - It seems this conversation",
+            "variable": "step_005",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "run_always",
+        "disambiguation_opt_out": true
+      },
+      {
+        "type": "standard",
+        "steps": [
+          {
+            "step": "step_556",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Select from following, if you need further assistance or you may ask your own question."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential",
+                  "repeat_on_reprompt": false
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Budget Planning Actions",
+                      "value": {
+                        "input": {
+                          "text": "Budget Planning Actions"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Debt Management Actions",
+                      "value": {
+                        "input": {
+                          "text": "Debt Management Actions"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Income Management Actions",
+                      "value": {
+                        "input": {
+                          "text": "Income Management Actions"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Investment Advice Actions",
+                      "value": {
+                        "input": {
+                          "text": "Investment Advice Actions"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Exit",
+                      "value": {
+                        "input": {
+                          "text": "Exit"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text_expression": {
+                            "concat": [
+                              {
+                                "scalar": "I didn't catch that. Select a valid option:"
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "response_type": "text",
+                      "selection_policy": "incremental"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "entity_8854",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_556",
+            "next_step": "step_635"
+          },
+          {
+            "step": "step_635",
+            "output": {
+              "generic": []
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "invoke_another_action_and_end",
+              "invoke_action": {
+                "action": "action_44732",
+                "policy": "default",
+                "parameters": null,
+                "result_variable": "step_635_result_1"
+              }
+            },
+            "variable": "step_635",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_556"
+                },
+                {
+                  "value": "Budget Planning Actions",
+                  "from_entity": "entity_8854"
+                }
+              ]
+            },
+            "next_step": "step_512"
+          },
+          {
+            "step": "step_512",
+            "output": {
+              "generic": []
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "invoke_another_action_and_end",
+              "invoke_action": {
+                "action": "action_49957",
+                "policy": "default",
+                "parameters": null,
+                "result_variable": "step_512_result_1"
+              }
+            },
+            "variable": "step_512",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_556"
+                },
+                {
+                  "value": "Debt Management Actions",
+                  "from_entity": "entity_8854"
+                }
+              ]
+            },
+            "next_step": "step_857"
+          },
+          {
+            "step": "step_857",
+            "output": {
+              "generic": []
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "invoke_another_action_and_end",
+              "invoke_action": {
+                "action": "action_9865",
+                "policy": "default",
+                "parameters": null,
+                "result_variable": "step_857_result_1"
+              }
+            },
+            "variable": "step_857",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_556"
+                },
+                {
+                  "value": "Income Management Actions",
+                  "from_entity": "entity_8854"
+                }
+              ]
+            },
+            "next_step": "step_573"
+          },
+          {
+            "step": "step_573",
+            "output": {
+              "generic": []
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "invoke_another_action_and_end",
+              "invoke_action": {
+                "action": "action_32358",
+                "policy": "default",
+                "parameters": null,
+                "result_variable": "step_573_result_1"
+              }
+            },
+            "variable": "step_573",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_556"
+                },
+                {
+                  "value": "Investment Advice Actions",
+                  "from_entity": "entity_8854"
+                }
+              ]
+            },
+            "next_step": "step_126"
+          },
+          {
+            "step": "step_126",
+            "handlers": [],
+            "resolver": {
+              "type": "invoke_another_action_and_end",
+              "invoke_action": {
+                "action": "action_33145",
+                "policy": "default",
+                "parameters": null,
+                "result_variable": "step_126_result_1"
+              }
+            },
+            "variable": "step_126",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_556"
+                },
+                {
+                  "value": "Exit",
+                  "from_entity": "entity_8854"
+                }
+              ]
+            }
+          }
+        ],
+        "title": "Re-ask",
+        "action": "action_49790",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "action_49790_intent_14936"
+        },
+        "variables": [
+          {
+            "title": "No response",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_126",
+            "data_type": "any"
+          },
+          {
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_126_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_512",
+            "data_type": "any"
+          },
+          {
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_512_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "Select from following, if you need further assistance or you may",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_556",
+            "data_type": "any"
+          },
+          {
+            "title": "",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_573",
+            "data_type": "any"
+          },
+          {
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_573_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_635",
+            "data_type": "any"
+          },
+          {
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_635_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_857",
+            "data_type": "any"
+          },
+          {
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_857_result_1",
+            "data_type": "any"
+          }
+        ],
+        "launch_mode": "learning",
+        "next_action": "action_33145",
+        "topic_switch": {
+          "allowed_from": true,
+          "allowed_into": true,
+          "never_return": false
+        },
+        "disambiguation_opt_out": false
+      },
+      {
+        "type": "standard",
+        "steps": [
+          {
+            "step": "step_949",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Select one of the following:"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "options": [
+                    {
+                      "label": "What are the best investment options for beginners?",
+                      "value": {
+                        "input": {
+                          "text": "What are the best investment options for beginners?"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Any tips on low-risk investments?",
+                      "value": {
+                        "input": {
+                          "text": "Any tips on low-risk investments?"
+                        }
+                      }
+                    },
+                    {
+                      "label": "How should I diversify my investments?",
+                      "value": {
+                        "input": {
+                          "text": "How should I diversify my investments?"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Can you give me some investment advice?",
+                      "value": {
+                        "input": {
+                          "text": "Can you give me some investment advice?"
+                        }
+                      }
+                    },
+                    {
+                      "label": "What's a good way to start investing?",
+                      "value": {
+                        "input": {
+                          "text": "What's a good way to start investing?"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text_expression": {
+                            "concat": [
+                              {
+                                "scalar": "I didn't catch that. Select a valid option:"
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "response_type": "text",
+                      "selection_policy": "incremental"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "entity_38409",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_949",
+            "next_step": "step_637"
+          },
+          {
+            "step": "step_637",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Of course! Here are some general investment tips to help you get started:\n\n\n  1. **Set Clear Goals:** Determine what you want to achieve with your investments (e.g., retirement, buying a house, education).\n  2. **Understand Your Risk Tolerance:** Assess how much risk you are willing to take. Generally, higher risk can lead to higher returns but also greater potential losses.\n  3."
+                          },
+                          {
+                            "scalar": " **Diversify Your Portfolio:** Spread your investments across different asset classes (stocks, bonds, real estate) to reduce risk.\n  4. **Invest for the Long Term:** Be patient and avoid making impulsive decisions based on short-term market fluctuations.\n  5. **Stay Informed:** Keep up with market trends and economic news to make informed investment decisions."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_637",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_949"
+                },
+                {
+                  "value": "Can you give me some investment advice?",
+                  "from_entity": "entity_38409"
+                }
+              ]
+            },
+            "next_step": "step_273"
+          },
+          {
+            "step": "step_273",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Diversification is key to managing risk and achieving a balanced portfolio. Here’s how you can diversify your investments:\n\n\n  1. **Spread Across Asset Classes:** Allocate your investments among different asset classes like stocks, bonds, real estate, and commodities.\n  2. **Diversify Within Asset Classes:** Within each asset class, invest in a variety of sectors and industries. For example,"
+                          },
+                          {
+                            "scalar": " in stocks, consider technology, healthcare, finance, and consumer goods.\n  3. **Geographic Diversification:** Invest in both domestic and international markets to spread risk across different economies.\n  4. **Use Mutual Funds or ETFs:** These investment vehicles automatically provide diversification by pooling money from many investors to buy a wide range of assets.\n  5."
+                          },
+                          {
+                            "scalar": " **Rebalance Regularly:** Periodically review and adjust your portfolio to maintain your desired level of diversification as market conditions change."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_273",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_949"
+                },
+                {
+                  "value": "How should I diversify my investments?",
+                  "from_entity": "entity_38409"
+                }
+              ]
+            },
+            "next_step": "step_660"
+          },
+          {
+            "step": "step_660",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "For beginners, it’s important to start with investments that are easy to understand and manage. Here are some great options:\n\n\n  1. **Index Funds:** These funds track a specific market index like the S&P 500 and offer broad market exposure with low fees.\n  2. **Exchange-Traded Funds (ETFs):** Similar to index funds,"
+                          },
+                          {
+                            "scalar": " ETFs are traded on stock exchanges and can provide diversified exposure to various sectors or asset classes.\n  3. **Robo-Advisors:** These automated platforms create and manage a diversified portfolio for you based on your risk tolerance and financial goals.\n  4. **Dividend Stocks:** Companies that regularly pay dividends can provide a steady income stream and potential for capital appreciation."
+                          },
+                          {
+                            "scalar": "\n  5. **Target-Date Funds:** These mutual funds automatically adjust their asset allocation based on your expected retirement date, becoming more conservative as the target date approaches."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_660",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_949"
+                },
+                {
+                  "value": "What are the best investment options for beginners?",
+                  "from_entity": "entity_38409"
+                }
+              ]
+            },
+            "next_step": "step_565"
+          },
+          {
+            "step": "step_565",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "If you're looking for low-risk investment options, consider the following:\n\n\n  1. **Savings Accounts:** These offer low returns but are very safe and provide easy access to your money.\n  2. **Certificates of Deposit (CDs):** These are time deposits offered by banks with fixed interest rates and maturity dates. They are low-risk but require you to lock in your money for a specific period.\n  3."
+                          },
+                          {
+                            "scalar": " **Government Bonds:** Bonds issued by the government (e.g., U.S. Treasury Bonds) are considered low-risk since they are backed by the government.\n  4. **Municipal Bonds:** These are bonds issued by local governments, which often provide tax advantages in addition to being relatively safe.\n  5. **Money Market Funds:** These mutual funds invest in short-term, high-"
+                          },
+                          {
+                            "scalar": "quality securities and aim to provide stability and liquidity."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_565",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_949"
+                },
+                {
+                  "value": "Any tips on low-risk investments?",
+                  "from_entity": "entity_38409"
+                }
+              ]
+            },
+            "next_step": "step_418"
+          },
+          {
+            "step": "step_418",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Would you like specific advice on any other topic?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential",
+                  "repeat_on_reprompt": false
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Yes",
+                      "value": {
+                        "input": {
+                          "text": "Yes"
+                        }
+                      }
+                    },
+                    {
+                      "label": "No",
+                      "value": {
+                        "input": {
+                          "text": "No"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text_expression": {
+                            "concat": [
+                              {
+                                "scalar": "I'm sorry, I did not catch that, please restate your response."
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "response_type": "text",
+                      "selection_policy": "incremental"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "sys-yes-no",
+              "max_tries": 3,
+              "response_collection_behavior": "always_ask"
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_418",
+            "next_step": "step_132"
+          },
+          {
+            "step": "step_132",
+            "handlers": [],
+            "resolver": {
+              "type": "invoke_another_action_and_end",
+              "invoke_action": {
+                "action": "action_49790",
+                "policy": "default",
+                "parameters": null,
+                "result_variable": "step_132_result_1"
+              }
+            },
+            "variable": "step_132",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_418"
+                },
+                {
+                  "scalar": "yes"
+                }
+              ]
+            },
+            "next_step": "step_686"
+          },
+          {
+            "step": "step_686",
+            "handlers": [],
+            "resolver": {
+              "type": "invoke_another_action_and_end",
+              "invoke_action": {
+                "action": "action_33145",
+                "policy": "default",
+                "parameters": null,
+                "result_variable": "step_686_result_1"
+              }
+            },
+            "variable": "step_686",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_418"
+                },
+                {
+                  "scalar": "no"
+                }
+              ]
+            }
+          }
+        ],
+        "title": "Investment Advice Actions",
+        "action": "action_32358",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "action_32358_intent_23213"
+        },
+        "variables": [
+          {
+            "title": "No response",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_132",
+            "data_type": "any"
+          },
+          {
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_132_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "Diversification is key to managing risk and achieving a balanced",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_273",
+            "data_type": "any"
+          },
+          {
+            "title": "Would you like specific advice on any other topic?",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_418",
+            "data_type": "yes_no"
+          },
+          {
+            "title": "If you're looking for low-risk investment options, consider the ",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_565",
+            "data_type": "any"
+          },
+          {
+            "title": "Of course! Here are some general investment tips to help you get",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_637",
+            "data_type": "any"
+          },
+          {
+            "title": "For beginners, it’s important to start with investments that are",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_660",
+            "data_type": "any"
+          },
+          {
+            "title": "No response",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_686",
+            "data_type": "any"
+          },
+          {
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_686_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "Select one of the following:",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_949",
+            "data_type": "any"
+          }
+        ],
+        "launch_mode": "learning",
+        "next_action": "action_44732",
+        "topic_switch": {
+          "allowed_from": true,
+          "allowed_into": true,
+          "never_return": false
+        },
+        "disambiguation_opt_out": false
+      },
+      {
+        "type": "standard",
+        "steps": [
+          {
+            "step": "step_586",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Please select one of the following questions:"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential",
+                  "repeat_on_reprompt": false
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Show me how to increase my savings rate.",
+                      "value": {
+                        "input": {
+                          "text": "Show me how to increase my savings rate."
+                        }
+                      }
+                    },
+                    {
+                      "label": "How much should I save to reach my goal?",
+                      "value": {
+                        "input": {
+                          "text": "How much should I save to reach my goal?"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Calculate my savings rate based on my income and expenses.",
+                      "value": {
+                        "input": {
+                          "text": "Calculate my savings rate based on my income and expenses."
+                        }
+                      }
+                    },
+                    {
+                      "label": "What's my current savings rate?",
+                      "value": {
+                        "input": {
+                          "text": "What's my current savings rate?"
+                        }
+                      }
+                    },
+                    {
+                      "label": "How much should I save each month?",
+                      "value": {
+                        "input": {
+                          "text": "How much should I save each month?"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text_expression": {
+                            "concat": [
+                              {
+                                "scalar": "I didn't catch that. Select a valid option:"
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "response_type": "text",
+                      "selection_policy": "incremental"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "entity_43624",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_586",
+            "next_step": "step_183"
+          },
+          {
+            "step": "step_183",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Increasing your savings rate can be achieved by implementing a few strategies:\n\n\n  1. **Automate Savings:** Set up automatic transfers from your checking account to your savings account every month.\n  2. **Reduce Unnecessary Expenses:** Identify non-essential spending and cut back on things like dining out, subscriptions, and entertainment.\n  3."
+                          },
+                          {
+                            "scalar": " **Increase Income:** Consider finding additional sources of income, such as a side job or freelance work.\n  4. **Refinance Debt:** Look into refinancing loans to lower your interest rates and monthly payments, freeing up more money to save.\n  5. **Budget Wisely:** Create a detailed budget and stick to it, ensuring that you prioritize savings."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_183",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_586"
+                },
+                {
+                  "value": "Show me how to increase my savings rate.",
+                  "from_entity": "entity_43624"
+                }
+              ]
+            },
+            "next_step": "step_379"
+          },
+          {
+            "step": "step_379",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Let's calculate how much you need to save to reach your goal. So to calculate it you may use following formula:\n\nRequired Savings = (Saving Goal Amount)/(Months)"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "context": {
+              "variables": []
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_379",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_586"
+                },
+                {
+                  "value": "How much should I save to reach my goal?",
+                  "from_entity": "entity_43624"
+                }
+              ]
+            },
+            "next_step": "step_806"
+          },
+          {
+            "step": "step_806",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Sure! Here's formula that you can use to calculate your saving rate:\nSavings Rate = (Monthly Savings / Monthly Income) * 100"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_806",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_586"
+                },
+                {
+                  "value": "Calculate my savings rate based on my income and expenses.",
+                  "from_entity": "entity_43624"
+                }
+              ]
+            },
+            "next_step": "step_794"
+          },
+          {
+            "step": "step_794",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "To calculate your savings rate, you'll need your monthly income and the amount you save each month. Then use the following formula:\nSavings Rate = (Monthly Savings / Monthly Income) * 100"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_794",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_586"
+                },
+                {
+                  "value": "What's my current savings rate?",
+                  "from_entity": "entity_43624"
+                }
+              ]
+            },
+            "next_step": "step_190"
+          },
+          {
+            "step": "step_190",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Determining how much you should save each month depends on several factors, including your income, expenses, and financial goals. Here's a step-by-step theoretical approach to calculating your monthly savings:\n\n\n  1. **Assess Your Income:** Calculate your total monthly income.\n  2. **Track Your Expenses:** List all your monthly expenses.\n  3."
+                          },
+                          {
+                            "scalar": " **Calculate Your Surplus:** Surplus Income = Total Monthly Income - Total Monthly Expenses\n  4. **Set Savings Goals:** Define your short-term and long-term savings goals.\n  5. **Determine Monthly Savings Amount:** Monthly Savings Amount for a Goal = Total Savings Goal / Number of Months to Achieve Goal\n  6."
+                          },
+                          {
+                            "scalar": " **Prioritize Savings:** Allocate your surplus income based on the importance and urgency of your goals.\n  7. **Implement a Savings Plan:** Create a savings plan that fits within your budget.\n  8. **Adjust and Review Regularly:** Periodically review and adjust your savings plan as necessary."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_190",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_586"
+                },
+                {
+                  "value": "How much should I save each month?",
+                  "from_entity": "entity_43624"
+                }
+              ]
+            },
+            "next_step": "step_267"
+          },
+          {
+            "step": "step_267",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Would you like help setting up a budget to see where you can cut back?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential",
+                  "repeat_on_reprompt": false
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Yes",
+                      "value": {
+                        "input": {
+                          "text": "Yes"
+                        }
+                      }
+                    },
+                    {
+                      "label": "No",
+                      "value": {
+                        "input": {
+                          "text": "No"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text_expression": {
+                            "concat": [
+                              {
+                                "scalar": "I'm sorry, I did not catch that, please restate your response."
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "response_type": "text",
+                      "selection_policy": "incremental"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "sys-yes-no",
+              "max_tries": 3,
+              "response_collection_behavior": "always_ask"
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_267",
+            "next_step": "step_377"
+          },
+          {
+            "step": "step_377",
+            "handlers": [],
+            "resolver": {
+              "type": "invoke_another_action_and_end",
+              "invoke_action": {
+                "action": "action_49790",
+                "policy": "default",
+                "parameters": null,
+                "result_variable": "step_377_result_1"
+              }
+            },
+            "variable": "step_377",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_267"
+                },
+                {
+                  "scalar": "yes"
+                }
+              ]
+            },
+            "next_step": "step_825"
+          },
+          {
+            "step": "step_825",
+            "handlers": [],
+            "resolver": {
+              "type": "invoke_another_action_and_end",
+              "invoke_action": {
+                "action": "action_49790",
+                "policy": "default",
+                "parameters": null,
+                "result_variable": "step_825_result_1"
+              }
+            },
+            "variable": "step_825",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_267"
+                },
+                {
+                  "scalar": "no"
+                }
+              ]
+            }
+          }
+        ],
+        "title": "Income Management Actions",
+        "action": "action_9865",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "action_9865_intent_26659"
+        },
+        "variables": [
+          {
+            "title": "Increasing your savings rate can be achieved by implementing a f",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_183",
+            "data_type": "any"
+          },
+          {
+            "title": "Determining how much you should save each month depends on sever",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_190",
+            "data_type": "any"
+          },
+          {
+            "title": "Would you like help setting up a budget to see where you can cut",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_267",
+            "data_type": "yes_no"
+          },
+          {
+            "title": "No response",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_377",
+            "data_type": "any"
+          },
+          {
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_377_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "Let's calculate how much you need to save to reach your goal. So",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_379",
+            "data_type": "any"
+          },
+          {
+            "title": "Please select one of the following questions:",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_586",
+            "data_type": "any"
+          },
+          {
+            "title": "To calculate your savings rate, you'll need your monthly income ",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_794",
+            "data_type": "any"
+          },
+          {
+            "title": "Sure! Here's formula that you can use to calculate your saving r",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_806",
+            "data_type": "any"
+          },
+          {
+            "title": "No response",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_825",
+            "data_type": "any"
+          },
+          {
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_825_result_1",
+            "data_type": "any"
+          }
+        ],
+        "launch_mode": "learning",
+        "next_action": "action_32358",
+        "topic_switch": {
+          "allowed_from": true,
+          "allowed_into": true,
+          "never_return": false
+        },
+        "disambiguation_opt_out": false
+      }
+    ],
+    "intents": [
+      {
+        "intent": "action_33859_intent_6527",
+        "examples": []
+      },
+      {
+        "intent": "fallback_connect_to_agent",
+        "examples": [
+          {
+            "text": "I would like to speak to someone"
+          },
+          {
+            "text": "Can I connect to an agent?"
+          },
+          {
+            "text": "I would like to speak to a human"
+          },
+          {
+            "text": "Agent help"
+          },
+          {
+            "text": "Call agent"
+          }
+        ],
+        "description": "Please transfer me to an agent"
+      },
+      {
+        "intent": "action_9865_intent_26659",
+        "examples": [
+          {
+            "text": "Show me how to increase my savings rate."
+          },
+          {
+            "text": "How much should I save each month?"
+          },
+          {
+            "text": "What's my current savings rate?"
+          },
+          {
+            "text": "Calculate my savings rate based on my income and expenses."
+          },
+          {
+            "text": "How much should I save to reach my goal?"
+          }
+        ]
+      },
+      {
+        "intent": "action_49790_intent_14936",
+        "examples": []
+      },
+      {
+        "intent": "action_32358_intent_23213",
+        "examples": [
+          {
+            "text": "What's a good way to start investing?"
+          },
+          {
+            "text": "Can you give me some investment advice?"
+          },
+          {
+            "text": "How should I diversify my investments?"
+          },
+          {
+            "text": "Any tips on low-risk investments?"
+          },
+          {
+            "text": "What are the best investment options for beginners?"
+          }
+        ]
+      },
+      {
+        "intent": "action_44732_intent_32541",
+        "examples": [
+          {
+            "text": "Can you give me some tips on budgeting?"
+          },
+          {
+            "text": "Can you help me with my budget?"
+          },
+          {
+            "text": "What's a good way to manage my monthly expenses?"
+          },
+          {
+            "text": "How should I allocate my income?"
+          },
+          {
+            "text": "How can I save more money each month?"
+          }
+        ]
+      },
+      {
+        "intent": "action_49957_intent_21848",
+        "examples": [
+          {
+            "text": "What's the best way to pay off my credit card debt?"
+          },
+          {
+            "text": "Help me create a plan to repay my student loans."
+          },
+          {
+            "text": "What's the debt snowball method?"
+          },
+          {
+            "text": "Explain the debt avalanche method to me."
+          }
+        ]
+      },
+      {
+        "intent": "action_33145_intent_48717",
+        "examples": []
+      }
+    ],
+    "entities": [
+      {
+        "entity": "entity_19557",
+        "values": [
+          {
+            "type": "synonyms",
+            "value": "Help me create a plan to repay my student loans.",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Explain the debt avalanche method to me.",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "What's the debt snowball method?",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "What's the best way to pay off my credit card debt?",
+            "synonyms": []
+          }
+        ],
+        "fuzzy_match": true
+      },
+      {
+        "entity": "danger_words",
+        "values": [],
+        "fuzzy_match": false
+      },
+      {
+        "entity": "profane_words",
+        "values": [],
+        "fuzzy_match": false
+      },
+      {
+        "entity": "entity_9855",
+        "values": [
+          {
+            "type": "synonyms",
+            "value": "Debt Management Actions",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Exit",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Income Management Actions",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Investment Advice Actions",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Budget Planning Actions",
+            "synonyms": []
+          }
+        ],
+        "fuzzy_match": true
+      },
+      {
+        "entity": "entity_8854",
+        "values": [
+          {
+            "type": "synonyms",
+            "value": "Investment Advice Actions",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Exit",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Budget Planning Actions",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Debt Management Actions",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Income Management Actions",
+            "synonyms": []
+          }
+        ],
+        "fuzzy_match": true
+      },
+      {
+        "entity": "entity_43624",
+        "values": [
+          {
+            "type": "synonyms",
+            "value": "How much should I save to reach my goal?",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "What's my current savings rate?",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "How much should I save each month?",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Show me how to increase my savings rate.",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Calculate my savings rate based on my income and expenses.",
+            "synonyms": []
+          }
+        ],
+        "fuzzy_match": true
+      },
+      {
+        "entity": "sys-yes-no",
+        "values": []
+      },
+      {
+        "entity": "sys-number",
+        "values": []
+      },
+      {
+        "entity": "entity_38409",
+        "values": [
+          {
+            "type": "synonyms",
+            "value": "How should I diversify my investments?",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "What's a good way to start investing?",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "What are the best investment options for beginners?",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Any tips on low-risk investments?",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Can you give me some investment advice?",
+            "synonyms": []
+          }
+        ],
+        "fuzzy_match": true
+      }
+    ],
+    "metadata": {
+      "api_version": {
+        "major_version": "v2",
+        "minor_version": "2018-11-08"
+      },
+      "skill": {
+        "counts": {
+          "actions": 11,
+          "intents": 8,
+          "entities": 9,
+          "data_types": 0,
+          "collections": 0,
+          "global_variables": 0
+        }
+      }
+    },
+    "variables": [],
+    "data_types": [],
+    "collections": [],
+    "counterexamples": [],
+    "system_settings": {
+      "variable": {
+        "format": {
+          "time": {
+            "pattern": "short"
+          },
+          "currency": {
+            "fraction_digits": 2
+          }
+        }
+      },
+      "off_topic": {
+        "enabled": true
+      },
+      "auto_learn": {
+        "apply": true
+      },
+      "topic_switch": {
+        "enabled": true,
+        "messages": {
+          "enable_confirmation": true,
+          "confirmation_failure": {
+            "generic": [
+              {
+                "values": [
+                  {
+                    "text_expression": {
+                      "concat": [
+                        {
+                          "scalar": "I'm sorry, I did not catch that, please confirm."
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "response_type": "text",
+                "selection_policy": "sequential"
+              }
+            ]
+          },
+          "confirmation_request": {
+            "generic": [
+              {
+                "values": [
+                  {
+                    "text_expression": {
+                      "concat": [
+                        {
+                          "scalar": "Do you want to continue with the previous topic: "
+                        },
+                        {
+                          "system_variable": "digressed_from"
+                        },
+                        {
+                          "scalar": "?"
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "response_type": "text",
+                "selection_policy": "sequential"
+              },
+              {
+                "options": [
+                  {
+                    "label": "Yes",
+                    "value": {
+                      "input": {
+                        "text": "Yes"
+                      }
+                    }
+                  },
+                  {
+                    "label": "No",
+                    "value": {
+                      "input": {
+                        "text": "No"
+                      }
+                    }
+                  }
+                ],
+                "response_type": "option",
+                "repeat_on_reprompt": true
+              }
+            ]
+          }
+        },
+        "max_tries": 3
+      },
+      "generative_ai": {
+        "slot_filling": {
+          "enabled": false
+        }
+      },
+      "disambiguation": {
+        "prompt": "Did you mean:",
+        "enabled": true,
+        "randomize": true,
+        "max_suggestions": 5,
+        "suggestion_text_policy": "title",
+        "none_of_the_above_prompt": "None of the above",
+        "use_connect_to_support_prompt": "Connect to support",
+        "single_answer_clarification_prompt": "Something else"
+      },
+      "search_routing": {
+        "target": "conversational_search"
+      },
+      "spelling_auto_correct": true
+    },
+    "learning_opt_out": false,
+    "language": "en"
+  },
+  "description": "created for assistant 422f7137-4087-4419-ae9b-27fc63cd7dba",
+  "dialog_settings": {
+    "source_assistant": "4bf0cb17-c0c1-4ffc-8ee2-3f8426e98366"
+  },
+  "created": "2024-06-30T18:31:30.027Z",
+  "updated": "2024-06-30T18:31:30.027Z",
+  "snapshot": "1",
+  "assistant_id": "422f7137-4087-4419-ae9b-27fc63cd7dba",
+  "assistant_references": [
+    {
+      "name": "FinWise Assistant",
+      "assistant_id": "4bf0cb17-c0c1-4ffc-8ee2-3f8426e98366",
+      "skill_reference": "actions skill"
+    }
+  ]
+}
