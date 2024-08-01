@@ -46,5 +46,5 @@ To integrate IBM Watson Assistant into your own project, follow these steps:
    - Open your web application to test the integration of Watson Assistant.
    - You should see the Watson Assistant chat widget loaded with your assistant's configuration.
 
-## Find more at [My Website](https://neerajvermagps.000webhostapp.com/)
+# Find more at [My Website](https://neerajvermagps.infinityfreeapp.com/)
 
